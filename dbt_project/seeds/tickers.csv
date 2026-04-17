@@ -1,0 +1,21 @@
+symbol,company_name,sector,industry
+AAPL,Apple Inc,Technology,Consumer Electronics
+MSFT,Microsoft Corp,Technology,Software
+GOOGL,Alphabet Inc,Technology,Internet
+NVDA,NVIDIA Corp,Technology,Semiconductors
+META,Meta Platforms,Technology,Internet
+JPM,JPMorgan Chase,Finance,Banking
+BAC,Bank of America,Finance,Banking
+GS,Goldman Sachs,Finance,Investment Banking
+V,Visa Inc,Finance,Payments
+MA,Mastercard Inc,Finance,Payments
+JNJ,Johnson & Johnson,Healthcare,Pharmaceuticals
+PFE,Pfizer Inc,Healthcare,Pharmaceuticals
+UNH,UnitedHealth Group,Healthcare,Insurance
+ABBV,AbbVie Inc,Healthcare,Biotechnology
+MRK,Merck & Co,Healthcare,Pharmaceuticals
+XOM,Exxon Mobil,Energy,Oil & Gas
+CVX,Chevron Corp,Energy,Oil & Gas
+COP,ConocoPhillips,Energy,Oil & Gas
+WMT,Walmart Inc,Consumer,Retail
+AMZN,Amazon.com Inc,Consumer,E-Commerce
