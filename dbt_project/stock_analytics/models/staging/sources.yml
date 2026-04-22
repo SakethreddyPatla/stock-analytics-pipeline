@@ -1,0 +1,30 @@
+version: 2
+
+sources:
+  - name: raw
+    database: project-933aee0c-10bd-4ab1-888
+    schema: raw
+    tables:
+      - name: stock_quotes
+        description: "Daily stock analytics from Finnhub API via GCS"
+        columns:
+          - name: symbol
+            description: "Stock ticker symbol"
+          - name: date 
+            description: "Trading Date"
+          - name: open
+            description: "Openting price"
+          - name: high
+            description: "Intraday high price"
+          - name: low
+            description: "Intraday low price"
+          - name: close
+            description: "Closing price"
+          - name: prev_close
+            description: "Previous day closing price"
+          - name: change
+            description: "Price change in dollars"
+          - name: change_pct
+            description: "Price change in percentage"
+          - name: ingested_at
+            description: "TImestamp when record was ingested"
