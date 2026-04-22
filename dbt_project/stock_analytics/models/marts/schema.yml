@@ -1,0 +1,49 @@
+version: 2
+
+models:
+  - name: dim_company
+    description: "Company dimension - sector and industry classification"
+    columns:
+      - name: symbol
+        tests:
+          - not_null
+          - unique
+      - name: sector
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Technology','Finance','Healthcare','Energy','Consumer']
+
+  - name: fct_daily_trading
+    description: "Daily trading fact table - one row per stock per day"
+    columns:
+      - name: symbol
+        tests:
+          - not_null
+      - name: trade_date
+        tests:
+          - not_null
+      - name: close_price
+        tests:
+          - not_null:
+              severity: warn
+      - name: performance_label
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['strong up','up','flat','down','strong down']
+
+  - name: mart_sector_performance
+    description: "Daily sector-level aggregates"
+    columns:
+      - name: trade_date
+        tests:
+          - not_null
+      - name: sector
+        tests:
+          - not_null
+      - name: sector_sentiment
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['bullish','bearish','neutral']
