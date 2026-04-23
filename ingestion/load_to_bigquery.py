@@ -19,7 +19,13 @@ def load_to_bigquery(date):
     client = bigquery.Client(project=PROJECT_ID)
     table_id = f"{PROJECT_ID}.raw.stock_quotes"
     gcs_uri = f"gs://{GCS_BUCKET}/raw/candles/{date}.json"
-
+    # First delete existing rows for this date (idempotent)
+    delete_query = f"""
+        DELETE FROM `{table_id}`
+        WHERE date = '{date}'
+    """
+    print(f"Removing existing rows for {date}...")
+    client.query(delete_query).result()
     job_config = bigquery.LoadJobConfig(
         autodetect=True,
         source_format=bigquery.SourceFormat.NEWLINE_DELIMITED_JSON,
