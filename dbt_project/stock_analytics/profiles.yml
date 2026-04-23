@@ -1,0 +1,11 @@
+﻿stock_analytics:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: oauth
+      project: project-933aee0c-10bd-4ab1-888
+      dataset: staging
+      threads: 4
+      timeout_seconds: 300
+      location: US

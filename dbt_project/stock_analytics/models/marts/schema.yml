@@ -30,10 +30,9 @@ models:
       - name: performance_label
         tests:
           - accepted_values:
-              arguments:
-                values: ['strong up','up','flat','down','strong down']
+              values: ['strong up','up','flat','down','strong down']
 
-  - name: mart_sector_performance
+  - name: marts_sector_performance
     description: "Daily sector-level aggregates"
     columns:
       - name: trade_date
@@ -45,5 +44,4 @@ models:
       - name: sector_sentiment
         tests:
           - accepted_values:
-              arguments:
-                values: ['bullish','bearish','neutral']
+              values: ['bullish','bearish','neutral']

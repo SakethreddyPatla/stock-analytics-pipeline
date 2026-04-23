@@ -49,7 +49,7 @@ def fetch_quote(symbol, date):
     }
 
 def upload_to_gcs(records, date):
-    client = storage.Client()
+    client = storage.Client(project=os.getenv("GCP_PROJECT_ID"))
     bucket = client.bucket(GCS_BUCKET)
     file_path = f"raw/candles/{date}.json"
     blob = bucket.blob(file_path)

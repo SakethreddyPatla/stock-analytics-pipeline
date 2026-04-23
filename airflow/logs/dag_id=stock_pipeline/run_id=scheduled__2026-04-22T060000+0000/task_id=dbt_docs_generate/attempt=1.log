@@ -1,0 +1,103 @@
+[2026-04-23T18:00:20.688+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-04-23T18:00:20.719+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: stock_pipeline.dbt_docs_generate scheduled__2026-04-22T06:00:00+00:00 [queued]>
+[2026-04-23T18:00:20.727+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: stock_pipeline.dbt_docs_generate scheduled__2026-04-22T06:00:00+00:00 [queued]>
+[2026-04-23T18:00:20.728+0000] {taskinstance.py:2303} INFO - Starting attempt 1 of 2
+[2026-04-23T18:00:20.743+0000] {taskinstance.py:2327} INFO - Executing <Task(BashOperator): dbt_docs_generate> on 2026-04-22 06:00:00+00:00
+[2026-04-23T18:00:20.752+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'stock_pipeline', 'dbt_docs_generate', 'scheduled__2026-04-22T06:00:00+00:00', '--job-id', '2', '--raw', '--subdir', 'DAGS_FOLDER/stock_pipeline_dag.py', '--cfg-path', '/tmp/tmpl19bord9']
+[2026-04-23T18:00:20.755+0000] {standard_task_runner.py:91} INFO - Job 2: Subtask dbt_docs_generate
+[2026-04-23T18:00:20.758+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=175) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-04-23T18:00:20.760+0000] {standard_task_runner.py:63} INFO - Started process 178 to run task
+[2026-04-23T18:00:20.836+0000] {task_command.py:426} INFO - Running <TaskInstance: stock_pipeline.dbt_docs_generate scheduled__2026-04-22T06:00:00+00:00 [running]> on host 38498704aa99
+[2026-04-23T18:00:20.940+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='stock_pipeline' AIRFLOW_CTX_TASK_ID='dbt_docs_generate' AIRFLOW_CTX_EXECUTION_DATE='2026-04-22T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-04-22T06:00:00+00:00'
+[2026-04-23T18:00:20.941+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-04-23T18:00:20.975+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-04-23T18:00:20.977+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'dbt docs generate --project-dir /opt/***/dbt_project --profiles-dir /opt/***/dbt_project']
+[2026-04-23T18:00:20.989+0000] {subprocess.py:86} INFO - Output:
+[2026-04-23T18:00:20.993+0000] {subprocess.py:93} INFO - /usr/bin/bash: line 1: dbt: command not found
+[2026-04-23T18:00:20.994+0000] {subprocess.py:97} INFO - Command exited with return code 127
+[2026-04-23T18:00:20.995+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-04-23T18:00:21.009+0000] {taskinstance.py:2890} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/bash.py", line 243, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 127.
+[2026-04-23T18:00:21.015+0000] {taskinstance.py:1205} INFO - Marking task as UP_FOR_RETRY. dag_id=stock_pipeline, task_id=dbt_docs_generate, execution_date=20260422T060000, start_date=20260423T180020, end_date=20260423T180021
+[2026-04-23T18:00:21.030+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 2 for task dbt_docs_generate (Bash command failed. The command returned a non-zero exit code 127.; 178)
+[2026-04-23T18:00:21.056+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2026-04-23T18:00:21.079+0000] {taskinstance.py:3482} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-04-23T18:00:21.083+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-04-23T18:07:36.157+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-04-23T18:07:36.192+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: stock_pipeline.dbt_docs_generate scheduled__2026-04-22T06:00:00+00:00 [queued]>
+[2026-04-23T18:07:36.202+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: stock_pipeline.dbt_docs_generate scheduled__2026-04-22T06:00:00+00:00 [queued]>
+[2026-04-23T18:07:36.203+0000] {taskinstance.py:2303} INFO - Starting attempt 1 of 2
+[2026-04-23T18:07:36.217+0000] {taskinstance.py:2327} INFO - Executing <Task(BashOperator): dbt_docs_generate> on 2026-04-22 06:00:00+00:00
+[2026-04-23T18:07:36.227+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=178) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-04-23T18:07:36.225+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'stock_pipeline', 'dbt_docs_generate', 'scheduled__2026-04-22T06:00:00+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/stock_pipeline_dag.py', '--cfg-path', '/tmp/tmp9vem3h_5']
+[2026-04-23T18:07:36.229+0000] {standard_task_runner.py:63} INFO - Started process 183 to run task
+[2026-04-23T18:07:36.229+0000] {standard_task_runner.py:91} INFO - Job 4: Subtask dbt_docs_generate
+[2026-04-23T18:07:36.317+0000] {task_command.py:426} INFO - Running <TaskInstance: stock_pipeline.dbt_docs_generate scheduled__2026-04-22T06:00:00+00:00 [running]> on host ec8841baf29e
+[2026-04-23T18:07:36.407+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='stock_pipeline' AIRFLOW_CTX_TASK_ID='dbt_docs_generate' AIRFLOW_CTX_EXECUTION_DATE='2026-04-22T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-04-22T06:00:00+00:00'
+[2026-04-23T18:07:36.409+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-04-23T18:07:36.432+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-04-23T18:07:36.433+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'dbt docs generate --project-dir /opt/***/dbt_project --profiles-dir /opt/***/dbt_project']
+[2026-04-23T18:07:36.445+0000] {subprocess.py:86} INFO - Output:
+[2026-04-23T18:07:36.446+0000] {subprocess.py:93} INFO - /usr/bin/bash: line 1: dbt: command not found
+[2026-04-23T18:07:36.447+0000] {subprocess.py:97} INFO - Command exited with return code 127
+[2026-04-23T18:07:36.449+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-04-23T18:07:36.459+0000] {taskinstance.py:2890} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/bash.py", line 243, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 127.
+[2026-04-23T18:07:36.464+0000] {taskinstance.py:1205} INFO - Marking task as UP_FOR_RETRY. dag_id=stock_pipeline, task_id=dbt_docs_generate, execution_date=20260422T060000, start_date=20260423T180736, end_date=20260423T180736
+[2026-04-23T18:07:36.477+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 4 for task dbt_docs_generate (Bash command failed. The command returned a non-zero exit code 127.; 183)
+[2026-04-23T18:07:36.484+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2026-04-23T18:07:36.505+0000] {taskinstance.py:3482} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-04-23T18:07:36.508+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-04-23T18:36:13.519+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-04-23T18:36:13.548+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: stock_pipeline.dbt_docs_generate scheduled__2026-04-22T06:00:00+00:00 [queued]>
+[2026-04-23T18:36:13.555+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: stock_pipeline.dbt_docs_generate scheduled__2026-04-22T06:00:00+00:00 [queued]>
+[2026-04-23T18:36:13.556+0000] {taskinstance.py:2303} INFO - Starting attempt 1 of 2
+[2026-04-23T18:36:13.570+0000] {taskinstance.py:2327} INFO - Executing <Task(BashOperator): dbt_docs_generate> on 2026-04-22 06:00:00+00:00
+[2026-04-23T18:36:13.579+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'stock_pipeline', 'dbt_docs_generate', 'scheduled__2026-04-22T06:00:00+00:00', '--job-id', '6', '--raw', '--subdir', 'DAGS_FOLDER/stock_pipeline_dag.py', '--cfg-path', '/tmp/tmpay373q2f']
+[2026-04-23T18:36:13.581+0000] {standard_task_runner.py:91} INFO - Job 6: Subtask dbt_docs_generate
+[2026-04-23T18:36:13.581+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=371) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-04-23T18:36:13.582+0000] {standard_task_runner.py:63} INFO - Started process 372 to run task
+[2026-04-23T18:36:13.646+0000] {task_command.py:426} INFO - Running <TaskInstance: stock_pipeline.dbt_docs_generate scheduled__2026-04-22T06:00:00+00:00 [running]> on host 7eb82a26259b
+[2026-04-23T18:36:13.732+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='stock_pipeline' AIRFLOW_CTX_TASK_ID='dbt_docs_generate' AIRFLOW_CTX_EXECUTION_DATE='2026-04-22T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-04-22T06:00:00+00:00'
+[2026-04-23T18:36:13.733+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-04-23T18:36:13.744+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-04-23T18:36:13.746+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'dbt docs generate --project-dir /opt/***/dbt_project --profiles-dir /opt/***/dbt_project --log-path /tmp/dbt-logs --target-path /tmp/dbt-target']
+[2026-04-23T18:36:13.756+0000] {subprocess.py:86} INFO - Output:
+[2026-04-23T18:36:15.740+0000] {subprocess.py:93} INFO - [0m18:36:15  Running with dbt=1.7.19
+[2026-04-23T18:36:16.831+0000] {subprocess.py:93} INFO - [0m18:36:16  Registered adapter: bigquery=1.7.0
+[2026-04-23T18:36:17.598+0000] {subprocess.py:93} INFO - [0m18:36:17  Found 4 models, 1 seed, 16 tests, 1 source, 0 exposures, 0 metrics, 450 macros, 0 groups, 0 semantic models
+[2026-04-23T18:36:17.601+0000] {subprocess.py:93} INFO - [0m18:36:17
+[2026-04-23T18:36:20.768+0000] {subprocess.py:93} INFO - [0m18:36:20  Concurrency: 4 threads (target='dev')
+[2026-04-23T18:36:20.770+0000] {subprocess.py:93} INFO - [0m18:36:20
+[2026-04-23T18:36:21.016+0000] {subprocess.py:93} INFO - [0m18:36:21  Building catalog
+[2026-04-23T18:36:24.119+0000] {subprocess.py:93} INFO - [0m18:36:24  Catalog written to /tmp/dbt-target/catalog.json
+[2026-04-23T18:36:24.508+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2026-04-23T18:36:24.509+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-04-23T18:36:24.534+0000] {taskinstance.py:1205} INFO - Marking task as SUCCESS. dag_id=stock_pipeline, task_id=dbt_docs_generate, execution_date=20260422T060000, start_date=20260423T183613, end_date=20260423T183624
+[2026-04-23T18:36:24.585+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-04-23T18:36:24.621+0000] {taskinstance.py:3482} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-04-23T18:36:24.625+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
