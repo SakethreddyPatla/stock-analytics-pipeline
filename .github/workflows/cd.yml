@@ -51,7 +51,7 @@ jobs:
                 location: US
           EOF
       # Step 4: Lint
-      # We lint on CD too ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â belt and suspenders approach.
+      
       # If somehow a bad lint slipped through CI, we catch it here.
       - name: Lint SQL with sqlfluff
         working-directory: dbt_project/stock_analytics
@@ -75,10 +75,10 @@ jobs:
       - name: Deploy to production
         run: |
           echo " SQL lint passed"
-          echo " dbt compile passed ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â all model references valid"
+          echo " dbt compile passed  all model references valid"
           echo " In production this would:"
           echo "  1. Run dbt run against BigQuery marts"
-          echo "  2. Run dbt test ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â fail deploy if data quality breaks"
+          echo "  2. Run dbt test fail deploy if data quality breaks"
           echo "  3. Generate dbt docs and upload to GCS"
           echo "  4. Trigger Airflow DAG via REST API"
           echo "  Project: $GCP_PROJECT_ID"
