@@ -1,0 +1,87 @@
+name: CI 
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint-and-validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Get the code
+      # actions/checkout is an official GitHub Action.
+      # Without this step the VM has NO files — it's a blank machine.
+      # This clones your repo into the VM so all subsequent steps
+      # can see your SQL files, dbt project, etc.      
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Install Python
+      # The Ubuntu VM has Python but not necessarily the version
+      # we want. This pins it to 3.11 so behavior is consistent
+      # across every run, every machine, every developer.
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # Step 3: Install our tools
+      # We install exactly two things:
+      # 1. dbt-bigquery — so we can run "dbt compile"
+      # 2. sqlfluff + sqlfluff-templater-dbt — SQL linter
+      #    The dbt templater understands {{ ref() }} and {{ source() }}
+      #    so it can lint Jinja SQL correctly
+      - name: Install dependencies
+        run: |
+          pip install dbt-bigquery==1.7.0 \
+                      sqlfluff \
+                      sqlfluff-templater-dbt
+
+      # Step 4: Lint SQL with sqlfluff
+      # sqlfluff reads your .sqlfluff config and checks every
+      # .sql file in models/ for style violations.
+      # Examples of what it catches:
+      #   - inconsistent capitalisation (SELECT vs select)
+      #   - missing aliases on tables
+      #   - lines over 120 characters
+      #   - trailing whitespace
+      #
+      # Why does this matter? On a team, everyone writes SQL
+      # differently. sqlfluff enforces a single style so all
+      # code looks like it was written by one person.
+      # This is the "black" or "prettier" of SQL.
+      #
+      # working-directory means "cd into this folder first"
+      # so sqlfluff finds the .sqlfluff config file
+      - name: Lint SQL with sqlfluff
+        working-directory: dbt_project/stock_analytics
+        run: |
+          sqlfluff lint models/ --dialect bigquery --templater dbt 
+
+      # Step 5: dbt compile
+      # "dbt compile" parses all your models and resolves all
+      # {{ ref() }}, {{ source() }}, and {{ macro() }} calls.
+      # It does NOT run any SQL against BigQuery.
+      # It does NOT need real GCP credentials.
+      #
+      # What it catches:
+      #   - broken ref() calls (referencing a model that doesn't exist)
+      #   - Jinja syntax errors in your SQL
+      #   - schema.yml referencing columns that don't exist in models
+      #   - circular dependencies between models
+      #
+      # This is extremely valuable — it means every PR is checked
+      # for broken model references without spending any money on BQ.
+      #
+      # --no-partial-parse forces a full fresh parse every time,
+      # avoiding stale cache issues in CI.
+      - name: dbt compile
+        working-directory: dbt_project/stock_analytics
+        run: |
+          dbt compile \
+            --project-dir . \
+            --profiles-dir . \
+            --log-path /tmp/dbt-logs \
+            --target-path /tmp/dbt-target \
+            --no-partial-parse 

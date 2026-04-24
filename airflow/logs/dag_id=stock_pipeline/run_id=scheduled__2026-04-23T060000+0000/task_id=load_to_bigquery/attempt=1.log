@@ -1,0 +1,24 @@
+[2026-04-24T15:48:00.832+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-04-24T15:48:00.978+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: stock_pipeline.load_to_bigquery scheduled__2026-04-23T06:00:00+00:00 [queued]>
+[2026-04-24T15:48:01.012+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: stock_pipeline.load_to_bigquery scheduled__2026-04-23T06:00:00+00:00 [queued]>
+[2026-04-24T15:48:01.018+0000] {taskinstance.py:2303} INFO - Starting attempt 1 of 2
+[2026-04-24T15:48:01.074+0000] {taskinstance.py:2327} INFO - Executing <Task(BashOperator): load_to_bigquery> on 2026-04-23 06:00:00+00:00
+[2026-04-24T15:48:01.090+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'stock_pipeline', 'load_to_bigquery', 'scheduled__2026-04-23T06:00:00+00:00', '--job-id', '9', '--raw', '--subdir', 'DAGS_FOLDER/stock_pipeline_dag.py', '--cfg-path', '/tmp/tmpf829fvwd']
+[2026-04-24T15:48:01.099+0000] {standard_task_runner.py:91} INFO - Job 9: Subtask load_to_bigquery
+[2026-04-24T15:48:01.110+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=1223) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-04-24T15:48:01.114+0000] {standard_task_runner.py:63} INFO - Started process 1224 to run task
+[2026-04-24T15:48:01.267+0000] {task_command.py:426} INFO - Running <TaskInstance: stock_pipeline.load_to_bigquery scheduled__2026-04-23T06:00:00+00:00 [running]> on host 7eb82a26259b
+[2026-04-24T15:48:01.559+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='stock_pipeline' AIRFLOW_CTX_TASK_ID='load_to_bigquery' AIRFLOW_CTX_EXECUTION_DATE='2026-04-23T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-04-23T06:00:00+00:00'
+[2026-04-24T15:48:01.561+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-04-24T15:48:01.630+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-04-24T15:48:01.636+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'python /opt/***/ingestion/load_to_bigquery.py']
+[2026-04-24T15:48:01.670+0000] {subprocess.py:86} INFO - Output:
+[2026-04-24T15:48:19.619+0000] {subprocess.py:93} INFO - Removing existing rows for 2026-04-23...
+[2026-04-24T15:48:19.620+0000] {subprocess.py:93} INFO - Loading gs://stock-pipeline-raw/raw/candles/2026-04-23.json -> project-933aee0c-10bd-4ab1-888.raw.stock_quotes
+[2026-04-24T15:48:19.621+0000] {subprocess.py:93} INFO - Done, Table now has 80 total rows
+[2026-04-24T15:48:19.804+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2026-04-24T15:48:19.806+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-04-24T15:48:19.847+0000] {taskinstance.py:1205} INFO - Marking task as SUCCESS. dag_id=stock_pipeline, task_id=load_to_bigquery, execution_date=20260423T060000, start_date=20260424T154800, end_date=20260424T154819
+[2026-04-24T15:48:19.909+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-04-24T15:48:19.938+0000] {taskinstance.py:3482} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-04-24T15:48:19.943+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
