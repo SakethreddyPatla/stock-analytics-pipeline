@@ -1,50 +1,20 @@
-﻿# ============================================================
-# SQLFLUFF CONFIG
-# sqlfluff reads this file automatically when run from the
-# dbt_project/stock_analytics directory
-# ============================================================
-
 [sqlfluff]
-# Tell sqlfluff we are writing BigQuery SQL dialect.
-# This matters because BigQuery has specific syntax like
-# COUNTIF(), QUALIFY, and backtick identifiers that other
-# dialects don't have.
 dialect = bigquery
-
-# The dbt templater understands Jinja — {{ ref() }}, {{ source() }}
-# {{ config() }}, macros etc.
-# Without this, sqlfluff would see {{ ref('stg_stock_quotes') }}
-# and throw a syntax error because it's not valid SQL.
 templater = dbt
-
-# Lines over 120 chars are hard to review in GitHub PRs.
 max_line_length = 120
 
-# Tell the dbt templater where to find the dbt project
-# and profiles so it can resolve Jinja before linting.
 [sqlfluff:templater:dbt]
 project_dir = .
 profiles_dir = .
 
-# Enforce lowercase SQL keywords: select, from, where, join
-# NOT: SELECT, FROM, WHERE, JOIN
-# This is a style choice — lowercase is the dbt community standard.
 [sqlfluff:rules:capitalisation.keywords]
 capitalisation_policy = lower
 
-# Enforce lowercase column and table identifiers
 [sqlfluff:rules:capitalisation.identifiers]
 capitalisation_policy = lower
 
-# Every table reference in a JOIN must have an explicit alias.
-# BAD:  join raw.stock_quotes on ...
-# GOOD: join raw.stock_quotes as sq on ...
 [sqlfluff:rules:aliasing.table]
 aliasing = explicit
 
-# Every column in a SELECT must have an explicit alias if it
-# is a calculation or function call.
-# BAD:  round(close_price, 2)
-# GOOD: round(close_price, 2) as close_price
 [sqlfluff:rules:aliasing.column]
 aliasing = explicit
