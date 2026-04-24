@@ -56,7 +56,7 @@ jobs:
       - name: Lint SQL with sqlfluff
         working-directory: dbt_project/stock_analytics
         run: |
-          sqlfluff lint models/ --dialect bigquery --templater dbt
+          sqlfluff lint models/ --dialect bigquery
 
       # Step 5: dbt compile
       # Same compile check as CI but now on the merged code.

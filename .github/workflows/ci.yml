@@ -74,7 +74,7 @@ jobs:
       - name: Lint SQL with sqlfluff
         working-directory: dbt_project/stock_analytics
         run: |
-          sqlfluff lint models/ --dialect bigquery --templater dbt 
+          sqlfluff lint models/ --dialect bigquery  
 
       # Step 5: dbt compile
       # "dbt compile" parses all your models and resolves all
