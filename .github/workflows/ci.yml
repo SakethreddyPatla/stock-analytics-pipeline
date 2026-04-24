@@ -11,7 +11,7 @@ jobs:
     steps:
       # Step 1: Get the code
       # actions/checkout is an official GitHub Action.
-      # Without this step the VM has NO files â€” it's a blank machine.
+      # Without this step the VM has NO files ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â it's a blank machine.
       # This clones your repo into the VM so all subsequent steps
       # can see your SQL files, dbt project, etc.      
       - name: Checkout code
@@ -28,8 +28,8 @@ jobs:
 
       # Step 3: Install our tools
       # We install exactly two things:
-      # 1. dbt-bigquery â€” so we can run "dbt compile"
-      # 2. sqlfluff + sqlfluff-templater-dbt â€” SQL linter
+      # 1. dbt-bigquery ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â so we can run "dbt compile"
+      # 2. sqlfluff + sqlfluff-templater-dbt ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â SQL linter
       #    The dbt templater understands {{ ref() }} and {{ source() }}
       #    so it can lint Jinja SQL correctly
       - name: Install dependencies
@@ -43,6 +43,18 @@ jobs:
         working-directory: dbt_project/stock_analytics
         run: |
           cat > profiles.yml << 'EOF'
+          stock_analytics:
+            target: ci
+            outputs:
+              ci:
+                type: bigquery
+                method: oauth
+                project: project-933aee0c-10bd-4ab1-888
+                dataset: staging
+                threads: 1
+                timeout_seconds: 300
+                location: US
+          EOF'
           stock_analytics:
             target: ci
             outputs:
@@ -88,7 +100,7 @@ jobs:
       #   - schema.yml referencing columns that don't exist in models
       #   - circular dependencies between models
       #
-      # This is extremely valuable â€” it means every PR is checked
+      # This is extremely valuable ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â it means every PR is checked
       # for broken model references without spending any money on BQ.
       #
       # --no-partial-parse forces a full fresh parse every time,
@@ -96,7 +108,7 @@ jobs:
       - name: dbt compile
         working-directory: dbt_project/stock_analytics
         run: |
-          dbt compile \
+          dbt parse \
             --project-dir . \
             --profiles-dir . \
             --log-path /tmp/dbt-logs \
