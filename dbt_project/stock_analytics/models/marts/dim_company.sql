@@ -2,7 +2,7 @@ with tickers as (
     select * from {{ ref('tickers') }}
 )
 
-select 
+select
     symbol,
     company_name,
     sector,
