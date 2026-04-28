@@ -23,7 +23,7 @@ with DAG(
     description='Daily stock data pipeline: Finnhub -> GCS -> BigQuery -> dbt',
     default_args=default_args,
     start_date=days_ago(1),
-    schedule_interval='0 6 * * 1-5',
+    schedule_interval='0 6 * * 1-6',
     catchup=False,
     tags=['stocks', 'finnhub', 'bigquery', 'dbt'],
 ) as dag:

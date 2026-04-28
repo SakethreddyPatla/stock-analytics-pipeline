@@ -1,0 +1,26 @@
+[2026-04-28T18:35:35.350+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-04-28T18:35:35.383+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: stock_pipeline.upload_docs_to_gcs scheduled__2026-04-27T06:00:00+00:00 [queued]>
+[2026-04-28T18:35:35.392+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: stock_pipeline.upload_docs_to_gcs scheduled__2026-04-27T06:00:00+00:00 [queued]>
+[2026-04-28T18:35:35.394+0000] {taskinstance.py:2303} INFO - Starting attempt 1 of 2
+[2026-04-28T18:35:35.408+0000] {taskinstance.py:2327} INFO - Executing <Task(BashOperator): upload_docs_to_gcs> on 2026-04-27 06:00:00+00:00
+[2026-04-28T18:35:35.420+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'stock_pipeline', 'upload_docs_to_gcs', 'scheduled__2026-04-27T06:00:00+00:00', '--job-id', '19', '--raw', '--subdir', 'DAGS_FOLDER/stock_pipeline_dag.py', '--cfg-path', '/tmp/tmp216q9cq6']
+[2026-04-28T18:35:35.422+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=4973) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-04-28T18:35:35.423+0000] {standard_task_runner.py:91} INFO - Job 19: Subtask upload_docs_to_gcs
+[2026-04-28T18:35:35.423+0000] {standard_task_runner.py:63} INFO - Started process 4974 to run task
+[2026-04-28T18:35:35.491+0000] {task_command.py:426} INFO - Running <TaskInstance: stock_pipeline.upload_docs_to_gcs scheduled__2026-04-27T06:00:00+00:00 [running]> on host 7eb82a26259b
+[2026-04-28T18:35:35.583+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='stock_pipeline' AIRFLOW_CTX_TASK_ID='upload_docs_to_gcs' AIRFLOW_CTX_EXECUTION_DATE='2026-04-27T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-04-27T06:00:00+00:00'
+[2026-04-28T18:35:35.584+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-04-28T18:35:35.596+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-04-28T18:35:35.599+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'gsutil -m cp /tmp/dbt-target/catalog.json /tmp/dbt-target/manifest.json /tmp/dbt-target/index.html gs://$GCS_BUCKET_NAME/dbt-docs/']
+[2026-04-28T18:35:35.609+0000] {subprocess.py:86} INFO - Output:
+[2026-04-28T18:35:40.149+0000] {subprocess.py:93} INFO - Copying file:///tmp/dbt-target/catalog.json [Content-Type=application/json]...
+[2026-04-28T18:35:40.157+0000] {subprocess.py:93} INFO - / [0/3 files][    0.0 B/  1.9 MiB]   0% Done                                    Copying file:///tmp/dbt-target/manifest.json [Content-Type=application/json]...
+[2026-04-28T18:35:40.170+0000] {subprocess.py:93} INFO - / [0/3 files][    0.0 B/  1.9 MiB]   0% Done                                    Copying file:///tmp/dbt-target/index.html [Content-Type=text/html]...
+[2026-04-28T18:35:42.034+0000] {subprocess.py:93} INFO - / [0/3 files][    0.0 B/  1.9 MiB]   0% Done                                    -- [1/3 files][  1.9 MiB/  1.9 MiB]  99% Done                                    - [2/3 files][  1.9 MiB/  1.9 MiB]  99% Done                                    \\ [3/3 files][  1.9 MiB/  1.9 MiB] 100% Done
+[2026-04-28T18:35:42.035+0000] {subprocess.py:93} INFO - Operation completed over 3 objects/1.9 MiB.
+[2026-04-28T18:35:42.410+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2026-04-28T18:35:42.411+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-04-28T18:35:42.437+0000] {taskinstance.py:1205} INFO - Marking task as SUCCESS. dag_id=stock_pipeline, task_id=upload_docs_to_gcs, execution_date=20260427T060000, start_date=20260428T183535, end_date=20260428T183542
+[2026-04-28T18:35:42.474+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-04-28T18:35:42.489+0000] {taskinstance.py:3482} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-04-28T18:35:42.491+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
