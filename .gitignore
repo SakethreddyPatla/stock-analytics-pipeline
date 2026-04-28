@@ -2,3 +2,5 @@
 
 gcp-credentials.json
 venv/
+
+airflow/logs/
