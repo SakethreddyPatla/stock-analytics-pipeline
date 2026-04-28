@@ -63,3 +63,68 @@
 [2026-04-28T18:35:20.956+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
 [2026-04-28T18:35:20.992+0000] {taskinstance.py:3482} INFO - 1 downstream tasks scheduled from follow-on schedule check
 [2026-04-28T18:35:20.996+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-04-28T18:43:12.454+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-04-28T18:43:12.511+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: stock_pipeline.dbt_test scheduled__2026-04-27T06:00:00+00:00 [queued]>
+[2026-04-28T18:43:12.525+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: stock_pipeline.dbt_test scheduled__2026-04-27T06:00:00+00:00 [queued]>
+[2026-04-28T18:43:12.526+0000] {taskinstance.py:2303} INFO - Starting attempt 1 of 2
+[2026-04-28T18:43:12.548+0000] {taskinstance.py:2327} INFO - Executing <Task(BashOperator): dbt_test> on 2026-04-27 06:00:00+00:00
+[2026-04-28T18:43:12.566+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'stock_pipeline', 'dbt_test', 'scheduled__2026-04-27T06:00:00+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/stock_pipeline_dag.py', '--cfg-path', '/tmp/tmpembrpzk1']
+[2026-04-28T18:43:12.571+0000] {standard_task_runner.py:91} INFO - Job 5: Subtask dbt_test
+[2026-04-28T18:43:12.609+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=308) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-04-28T18:43:12.612+0000] {standard_task_runner.py:63} INFO - Started process 309 to run task
+[2026-04-28T18:43:12.799+0000] {task_command.py:426} INFO - Running <TaskInstance: stock_pipeline.dbt_test scheduled__2026-04-27T06:00:00+00:00 [running]> on host f6d8fb2a708b
+[2026-04-28T18:43:12.879+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='stock_pipeline' AIRFLOW_CTX_TASK_ID='dbt_test' AIRFLOW_CTX_EXECUTION_DATE='2026-04-27T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-04-27T06:00:00+00:00'
+[2026-04-28T18:43:12.881+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-04-28T18:43:12.896+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-04-28T18:43:12.897+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'dbt test --project-dir /opt/***/dbt_project --profiles-dir /opt/***/dbt_project --log-path /tmp/dbt-logs --target-path /tmp/dbt-target']
+[2026-04-28T18:43:12.907+0000] {subprocess.py:86} INFO - Output:
+[2026-04-28T18:43:15.529+0000] {subprocess.py:93} INFO - [0m18:43:15  Running with dbt=1.7.19
+[2026-04-28T18:43:16.447+0000] {subprocess.py:93} INFO - [0m18:43:16  Registered adapter: bigquery=1.7.0
+[2026-04-28T18:43:16.948+0000] {subprocess.py:93} INFO - [0m18:43:16  Found 4 models, 1 seed, 16 tests, 1 source, 0 exposures, 0 metrics, 450 macros, 0 groups, 0 semantic models
+[2026-04-28T18:43:16.950+0000] {subprocess.py:93} INFO - [0m18:43:16
+[2026-04-28T18:43:19.881+0000] {subprocess.py:93} INFO - [0m18:43:19  Concurrency: 4 threads (target='dev')
+[2026-04-28T18:43:19.883+0000] {subprocess.py:93} INFO - [0m18:43:19
+[2026-04-28T18:43:19.898+0000] {subprocess.py:93} INFO - [0m18:43:19  1 of 16 START test accepted_values_dim_company_sector__Technology__Finance__Healthcare__Energy__Consumer  [RUN]
+[2026-04-28T18:43:19.901+0000] {subprocess.py:93} INFO - [0m18:43:19  2 of 16 START test accepted_values_fct_daily_trading_performance_label__strong_up__up__flat__down__strong_down  [RUN]
+[2026-04-28T18:43:19.903+0000] {subprocess.py:93} INFO - [0m18:43:19  3 of 16 START test accepted_values_marts_sector_performance_sector_sentiment__bullish__bearish__neutral  [RUN]
+[2026-04-28T18:43:19.904+0000] {subprocess.py:93} INFO - [0m18:43:19  4 of 16 START test accepted_values_stg_stock_quotes_day_direction__up__down__flat  [RUN]
+[2026-04-28T18:43:21.513+0000] {subprocess.py:93} INFO - [0m18:43:21  2 of 16 PASS accepted_values_fct_daily_trading_performance_label__strong_up__up__flat__down__strong_down  [[32mPASS[0m in 1.61s]
+[2026-04-28T18:43:21.514+0000] {subprocess.py:93} INFO - [0m18:43:21  5 of 16 START test accepted_values_stg_stock_quotes_symbol__AAPL__MSFT__GOOGL__NVDA__META__JPM__BAC__GS__V__MA__JNJ__PFE__UNH__ABBV__MRK__XOM__CVX__COP__WMT__AMZN  [RUN]
+[2026-04-28T18:43:21.549+0000] {subprocess.py:93} INFO - [0m18:43:21  3 of 16 PASS accepted_values_marts_sector_performance_sector_sentiment__bullish__bearish__neutral  [[32mPASS[0m in 1.64s]
+[2026-04-28T18:43:21.552+0000] {subprocess.py:93} INFO - [0m18:43:21  6 of 16 START test not_null_dim_company_sector ................................. [RUN]
+[2026-04-28T18:43:21.575+0000] {subprocess.py:93} INFO - [0m18:43:21  1 of 16 PASS accepted_values_dim_company_sector__Technology__Finance__Healthcare__Energy__Consumer  [[32mPASS[0m in 1.67s]
+[2026-04-28T18:43:21.586+0000] {subprocess.py:93} INFO - [0m18:43:21  7 of 16 START test not_null_dim_company_symbol ................................. [RUN]
+[2026-04-28T18:43:21.637+0000] {subprocess.py:93} INFO - [0m18:43:21  4 of 16 PASS accepted_values_stg_stock_quotes_day_direction__up__down__flat .... [[32mPASS[0m in 1.73s]
+[2026-04-28T18:43:21.645+0000] {subprocess.py:93} INFO - [0m18:43:21  8 of 16 START test not_null_fct_daily_trading_close_price ...................... [RUN]
+[2026-04-28T18:43:22.989+0000] {subprocess.py:93} INFO - [0m18:43:22  7 of 16 PASS not_null_dim_company_symbol ....................................... [[32mPASS[0m in 1.40s]
+[2026-04-28T18:43:22.994+0000] {subprocess.py:93} INFO - [0m18:43:22  9 of 16 START test not_null_fct_daily_trading_symbol ........................... [RUN]
+[2026-04-28T18:43:23.050+0000] {subprocess.py:93} INFO - [0m18:43:23  5 of 16 PASS accepted_values_stg_stock_quotes_symbol__AAPL__MSFT__GOOGL__NVDA__META__JPM__BAC__GS__V__MA__JNJ__PFE__UNH__ABBV__MRK__XOM__CVX__COP__WMT__AMZN  [[32mPASS[0m in 1.53s]
+[2026-04-28T18:43:23.063+0000] {subprocess.py:93} INFO - [0m18:43:23  10 of 16 START test not_null_fct_daily_trading_trade_date ...................... [RUN]
+[2026-04-28T18:43:23.237+0000] {subprocess.py:93} INFO - [0m18:43:23  8 of 16 PASS not_null_fct_daily_trading_close_price ............................ [[32mPASS[0m in 1.59s]
+[2026-04-28T18:43:23.246+0000] {subprocess.py:93} INFO - [0m18:43:23  11 of 16 START test not_null_marts_sector_performance_sector ................... [RUN]
+[2026-04-28T18:43:23.397+0000] {subprocess.py:93} INFO - [0m18:43:23  6 of 16 PASS not_null_dim_company_sector ....................................... [[32mPASS[0m in 1.84s]
+[2026-04-28T18:43:23.402+0000] {subprocess.py:93} INFO - [0m18:43:23  12 of 16 START test not_null_marts_sector_performance_trade_date ............... [RUN]
+[2026-04-28T18:43:24.447+0000] {subprocess.py:93} INFO - [0m18:43:24  10 of 16 PASS not_null_fct_daily_trading_trade_date ............................ [[32mPASS[0m in 1.38s]
+[2026-04-28T18:43:24.452+0000] {subprocess.py:93} INFO - [0m18:43:24  13 of 16 START test not_null_stg_stock_quotes_close_price ...................... [RUN]
+[2026-04-28T18:43:24.626+0000] {subprocess.py:93} INFO - [0m18:43:24  9 of 16 PASS not_null_fct_daily_trading_symbol ................................. [[32mPASS[0m in 1.62s]
+[2026-04-28T18:43:24.634+0000] {subprocess.py:93} INFO - [0m18:43:24  14 of 16 START test not_null_stg_stock_quotes_symbol ........................... [RUN]
+[2026-04-28T18:43:24.653+0000] {subprocess.py:93} INFO - [0m18:43:24  11 of 16 PASS not_null_marts_sector_performance_sector ......................... [[32mPASS[0m in 1.41s]
+[2026-04-28T18:43:24.657+0000] {subprocess.py:93} INFO - [0m18:43:24  15 of 16 START test not_null_stg_stock_quotes_trade_date ....................... [RUN]
+[2026-04-28T18:43:24.903+0000] {subprocess.py:93} INFO - [0m18:43:24  12 of 16 PASS not_null_marts_sector_performance_trade_date ..................... [[32mPASS[0m in 1.50s]
+[2026-04-28T18:43:24.906+0000] {subprocess.py:93} INFO - [0m18:43:24  16 of 16 START test unique_dim_company_symbol .................................. [RUN]
+[2026-04-28T18:43:25.948+0000] {subprocess.py:93} INFO - [0m18:43:25  13 of 16 PASS not_null_stg_stock_quotes_close_price ............................ [[32mPASS[0m in 1.50s]
+[2026-04-28T18:43:26.058+0000] {subprocess.py:93} INFO - [0m18:43:26  15 of 16 PASS not_null_stg_stock_quotes_trade_date ............................. [[32mPASS[0m in 1.40s]
+[2026-04-28T18:43:26.163+0000] {subprocess.py:93} INFO - [0m18:43:26  14 of 16 PASS not_null_stg_stock_quotes_symbol ................................. [[32mPASS[0m in 1.53s]
+[2026-04-28T18:43:26.640+0000] {subprocess.py:93} INFO - [0m18:43:26  16 of 16 PASS unique_dim_company_symbol ........................................ [[32mPASS[0m in 1.73s]
+[2026-04-28T18:43:26.651+0000] {subprocess.py:93} INFO - [0m18:43:26
+[2026-04-28T18:43:26.652+0000] {subprocess.py:93} INFO - [0m18:43:26  Finished running 16 tests in 0 hours 0 minutes and 9.70 seconds (9.70s).
+[2026-04-28T18:43:26.664+0000] {subprocess.py:93} INFO - [0m18:43:26
+[2026-04-28T18:43:26.665+0000] {subprocess.py:93} INFO - [0m18:43:26  [32mCompleted successfully[0m
+[2026-04-28T18:43:26.666+0000] {subprocess.py:93} INFO - [0m18:43:26
+[2026-04-28T18:43:26.667+0000] {subprocess.py:93} INFO - [0m18:43:26  Done. PASS=16 WARN=0 ERROR=0 SKIP=0 TOTAL=16
+[2026-04-28T18:43:27.350+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2026-04-28T18:43:27.352+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-04-28T18:43:27.387+0000] {taskinstance.py:1205} INFO - Marking task as SUCCESS. dag_id=stock_pipeline, task_id=dbt_test, execution_date=20260427T060000, start_date=20260428T184312, end_date=20260428T184327
+[2026-04-28T18:43:27.428+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-04-28T18:43:27.461+0000] {taskinstance.py:3482} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-04-28T18:43:27.464+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

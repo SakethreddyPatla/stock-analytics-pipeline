@@ -39,3 +39,45 @@
 [2026-04-28T18:35:06.343+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
 [2026-04-28T18:35:06.381+0000] {taskinstance.py:3482} INFO - 1 downstream tasks scheduled from follow-on schedule check
 [2026-04-28T18:35:06.385+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-04-28T18:42:49.853+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-04-28T18:42:49.881+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: stock_pipeline.dbt_run scheduled__2026-04-27T06:00:00+00:00 [queued]>
+[2026-04-28T18:42:49.888+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: stock_pipeline.dbt_run scheduled__2026-04-27T06:00:00+00:00 [queued]>
+[2026-04-28T18:42:49.889+0000] {taskinstance.py:2303} INFO - Starting attempt 1 of 2
+[2026-04-28T18:42:49.899+0000] {taskinstance.py:2327} INFO - Executing <Task(BashOperator): dbt_run> on 2026-04-27 06:00:00+00:00
+[2026-04-28T18:42:49.905+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'stock_pipeline', 'dbt_run', 'scheduled__2026-04-27T06:00:00+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/stock_pipeline_dag.py', '--cfg-path', '/tmp/tmpbiwi3cw_']
+[2026-04-28T18:42:49.907+0000] {standard_task_runner.py:91} INFO - Job 4: Subtask dbt_run
+[2026-04-28T18:42:49.907+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=243) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-04-28T18:42:49.909+0000] {standard_task_runner.py:63} INFO - Started process 244 to run task
+[2026-04-28T18:42:49.970+0000] {task_command.py:426} INFO - Running <TaskInstance: stock_pipeline.dbt_run scheduled__2026-04-27T06:00:00+00:00 [running]> on host f6d8fb2a708b
+[2026-04-28T18:42:50.049+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='stock_pipeline' AIRFLOW_CTX_TASK_ID='dbt_run' AIRFLOW_CTX_EXECUTION_DATE='2026-04-27T06:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-04-27T06:00:00+00:00'
+[2026-04-28T18:42:50.050+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-04-28T18:42:50.061+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-04-28T18:42:50.063+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'dbt run --project-dir /opt/***/dbt_project --profiles-dir /opt/***/dbt_project --log-path /tmp/dbt-logs --target-path /tmp/dbt-target']
+[2026-04-28T18:42:50.070+0000] {subprocess.py:86} INFO - Output:
+[2026-04-28T18:42:52.404+0000] {subprocess.py:93} INFO - [0m18:42:52  Running with dbt=1.7.19
+[2026-04-28T18:42:53.570+0000] {subprocess.py:93} INFO - [0m18:42:53  Registered adapter: bigquery=1.7.0
+[2026-04-28T18:42:53.600+0000] {subprocess.py:93} INFO - [0m18:42:53  Unable to do partial parsing because saved manifest not found. Starting full parse.
+[2026-04-28T18:42:55.664+0000] {subprocess.py:93} INFO - [0m18:42:55  Found 4 models, 1 seed, 16 tests, 1 source, 0 exposures, 0 metrics, 450 macros, 0 groups, 0 semantic models
+[2026-04-28T18:42:55.666+0000] {subprocess.py:93} INFO - [0m18:42:55
+[2026-04-28T18:43:00.815+0000] {subprocess.py:93} INFO - [0m18:43:00  Concurrency: 4 threads (target='dev')
+[2026-04-28T18:43:00.817+0000] {subprocess.py:93} INFO - [0m18:43:00
+[2026-04-28T18:43:00.846+0000] {subprocess.py:93} INFO - [0m18:43:00  1 of 4 START sql table model marts.dim_company ................................. [RUN]
+[2026-04-28T18:43:00.847+0000] {subprocess.py:93} INFO - [0m18:43:00  2 of 4 START sql view model staging.stg_stock_quotes ........................... [RUN]
+[2026-04-28T18:43:02.038+0000] {subprocess.py:93} INFO - [0m18:43:02  2 of 4 OK created sql view model staging.stg_stock_quotes ...................... [[32mCREATE VIEW (0 processed)[0m in 1.19s]
+[2026-04-28T18:43:04.185+0000] {subprocess.py:93} INFO - [0m18:43:04  1 of 4 OK created sql table model marts.dim_company ............................ [[32mCREATE TABLE (20.0 rows, 860.0 Bytes processed)[0m in 3.34s]
+[2026-04-28T18:43:04.191+0000] {subprocess.py:93} INFO - [0m18:43:04  3 of 4 START sql table model marts.fct_daily_trading ........................... [RUN]
+[2026-04-28T18:43:07.584+0000] {subprocess.py:93} INFO - [0m18:43:07  3 of 4 OK created sql table model marts.fct_daily_trading ...................... [[32mCREATE TABLE (100.0 rows, 8.6 KiB processed)[0m in 3.39s]
+[2026-04-28T18:43:07.590+0000] {subprocess.py:93} INFO - [0m18:43:07  4 of 4 START sql table model marts.marts_sector_performance .................... [RUN]
+[2026-04-28T18:43:10.882+0000] {subprocess.py:93} INFO - [0m18:43:10  4 of 4 OK created sql table model marts.marts_sector_performance ............... [[32mCREATE TABLE (25.0 rows, 5.3 KiB processed)[0m in 3.29s]
+[2026-04-28T18:43:10.901+0000] {subprocess.py:93} INFO - [0m18:43:10
+[2026-04-28T18:43:10.902+0000] {subprocess.py:93} INFO - [0m18:43:10  Finished running 1 view model, 3 table models in 0 hours 0 minutes and 15.23 seconds (15.23s).
+[2026-04-28T18:43:10.914+0000] {subprocess.py:93} INFO - [0m18:43:10
+[2026-04-28T18:43:10.915+0000] {subprocess.py:93} INFO - [0m18:43:10  [32mCompleted successfully[0m
+[2026-04-28T18:43:10.916+0000] {subprocess.py:93} INFO - [0m18:43:10
+[2026-04-28T18:43:10.917+0000] {subprocess.py:93} INFO - [0m18:43:10  Done. PASS=4 WARN=0 ERROR=0 SKIP=0 TOTAL=4
+[2026-04-28T18:43:11.651+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2026-04-28T18:43:11.652+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-04-28T18:43:11.675+0000] {taskinstance.py:1205} INFO - Marking task as SUCCESS. dag_id=stock_pipeline, task_id=dbt_run, execution_date=20260427T060000, start_date=20260428T184249, end_date=20260428T184311
+[2026-04-28T18:43:11.701+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-04-28T18:43:11.728+0000] {taskinstance.py:3482} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-04-28T18:43:11.730+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
